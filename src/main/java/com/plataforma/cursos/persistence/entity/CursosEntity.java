@@ -1,4 +1,4 @@
 package com.plataforma.cursos.persistence.entity;
 
-public class UsuarioEntity {
+public class CursosEntity {
 }
