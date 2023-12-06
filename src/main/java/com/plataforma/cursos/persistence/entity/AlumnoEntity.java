@@ -8,6 +8,8 @@ import jakarta.persistence.Table;
 @Table(name = "cursos")
 public class AlumnoEntity {
 
-
+    public void saludo(){
+        System.out.println("Hola");
+    }
 
 }
