@@ -2,11 +2,17 @@ package com.plataforma.cursos.persistence.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Date;
 
 @Entity
 @Table(name = "alumnos")
+@Getter
+@Setter
+@NoArgsConstructor
 public class AlumnoEntity {
 
     @Id   //Id indica que es la llave primaria
@@ -27,43 +33,14 @@ public class AlumnoEntity {
     @Column(nullable = false)
     private Date fechaNacimiento;
 
-    public Integer getIdUsuario() {
-        return idUsuario;
-    }
+    //Relacion con la tabla plan con idPlan
+    //  OneToOne = La tabla alumno solo puede tener relación con un solo plan de laa tabla Plan
+    // JoinColum = Este metodo es para especificar la columna por la cual se esta relacionando, se agrega el nombre, y la referencia de la otra tabla,
+    // Se le agregan dos parametros, para que no inserte datos y para no que actualice, ya que estos existen en la otra tabla.
+    @OneToOne
+    @JoinColumn(name = "id_plan", referencedColumnName = "id_plan", insertable = false, updatable = false)
+    private PlanEntity plan;
 
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
-    }
 
-    public String getNombre() {
-        return nombre;
-    }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
 }
